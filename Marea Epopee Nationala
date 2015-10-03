@@ -1,0 +1,1110 @@
+from sys import exit
+import random
+
+gatah = False
+gatab = False
+gatac = False
+go = 10
+v = 10
+magie = 2
+
+
+def dead(motiv):
+	print motiv, "Molodet, ai pierdut."
+
+def error():
+	print """
+	\n\tNu inteleg. Mai incearca odata."""
+
+
+def DaNu2(x, y, z):
+	while True:
+		x = raw_input("> ")
+		if x == "da" or x == "Da":
+			print y
+			pizdeala()
+		elif x == "nu" or x == "Nu":
+			print z
+			pizdeala()
+		else:
+			error()
+
+def calcatul_pe_cap():
+	global go
+	print """\n\tGopagonul e la pamant si tu incerci sa-l calci pe cap.
+	Pentru a face asta, trebuie sa te apropii, sa-i pui piciorul pe cap 
+	si sa intonezi imnul Moldovei, strofa cu strofa."""
+	unu = False
+	doi = False
+	trei = False
+	while True:
+		imn = raw_input("> ")
+		if "limba noastra-i o comoara" in imn or "Limba noastra-i o comoara" in imn:
+			print "\n\tGopagonul incepe sa tremure si sa strige cuvinte in latina."
+			unu = True
+		elif ("in adancuri infundata" in imn or "in adincuri infundata" in imn or "In adancuri infundata" in imn or "In adincuri infundata" in imn) and unu:
+			print "\n\tUn lichid negru, intunecat, incepe sa-i iasa pe gura, in timp ce el incepe sa se zbata."
+			doi = True
+		elif ("Un sirag de piatra rara" in imn or "un sirag de piatra rara" in imn or "un sirag, de piatra rara" in imn) and unu and doi:
+			print "\n\tSoaptele a o mie de voci se aud in jur, iar lumina dispare pentru cateva secunde de pe Pamant."
+			trei = True
+		elif ("Pe mosie revarsata" in imn or "pe mosie revarsata" in imn)and unu and doi and trei:
+			print """\n\tUn strigat infiorator te intoarce la realitate.
+	Gopagonul sare in sus, vadit slabit. Incepe a vorbi romana si scuipa mai rar pe jos.
+	Mai are %d vieti.""" %(go-2)
+			go -= 2
+			pizdonul()
+		else:
+			error()
+
+def lovitura_gopului(x):
+	global lovit
+	lovit = True
+	magie1 = True
+	magie = True
+	global v
+	g = random.randint(1, 170)
+	j = random.randint(1, 10)
+	if 78 < g < 150 and j <= 7:
+		print "\n\tTe-ai ferit de lovitura gopagonului."
+		lovit = False
+	elif x == "picior" and 0 <= g < 25 and lovit:
+		print "\n\tAi reusit sa blochezi lovitura."
+	elif x == "picior" and not 0 < g < 25 and lovit:
+		print """\n\tN-ai reusit sa blochezi lovitura si ti-ai luat una in masea. 
+	Mai ai %d vieti.""" % (v-1)
+		v -= 1
+	elif x == "piept" and not 26 <= g < 51 and lovit:
+		print """\n\tN-ai reusit sa blochezi lovitura si ti-ai luat una in masea. 
+	Mai ai %d vieti.""" % (v-1)
+		v -= 1
+	elif x == "piept" and 26 <= g < 51 and lovit:
+		print "\n\tAi reusit sa blochezi lovitura." 
+	elif x == "bostan" and not 52 < g < 77 and lovit:
+		print """\n\tN-ai reusit sa blochezi lovitura si ti-ai luat una in masea. 
+	Mai ai %d vieti.""" % (v-1)
+		v -= 1
+	elif x == "bostan" and 52 < g < 77 and lovit:
+		print "\n\tAi reusit sa blochezi lovitura."
+	elif 78 < g < 150 and j > 7 and lovit:
+		print "\n\tGopagonul o incercat o super-lovitura, nu te-o nimerit si o cazut jos."
+		print "\n\tIncerci sa-l calci pe cap?"
+		cap = raw_input("> ")
+		if cap == "da" or cap == "Da":
+			calcatul_pe_cap()
+		else:
+			pass
+	elif 150 < g <= 160 and lovit and magie:
+		print """\n\tGopagonul foloseste respiratia gopagonului. 
+		Te sufoci si cazi jos. Mai ai %d vieti.""" % (v-1)
+		v -= 1
+		magie = False
+	elif 160 < g <= 170 and lovit and magie1:
+		print """\n\tGopagonul foloseste 'snapcik'. 
+		Capul incepe sa te doara, iar ochii iti sangereaza. Mai ai %d vieti.""" % (v-1)
+		v -= 1
+		magie1 = False
+	else: 
+		pass
+
+def lovitura_ta(x):
+	global go
+	l = random.randint(1, 140)
+	d = random.randint(1, 20)
+	a = x
+	if a == "picior" and 0 <= l <= 40:
+		print "\n\tGopagonul ti-o blocat lovitura."
+	elif a == "picior" and not 0 < l <= 40:
+		print """\n\tAi nimerit gopagonul. El incepe sa urle de durere. 
+	Mai are %d vieti.""" % (go-1)
+		go -= 1
+	elif a == "piept" and 41 <= l <= 80:
+		print "\n\tGopagonul ti-o blocat lovitura."
+	elif a == "piept" and not 41 <= l <= 80:
+		print """\n\tAi nimerit gopagonul. El incepe sa urle de durere. 
+	Mai are %d vieti.""" % (go-1)
+		go -= 1
+	elif a == "bostan" and 81 < l <= 120:
+		print "\n\tGopagonul ti-o blocat lovitura."
+	elif a == "bostan" and not 81 < l <= 120:
+		print """\n\tAi nimerit gopagonul. El incepe sa urle de durere. 
+	Mai are %d vieti.""" % (go-1)
+		go -= 1
+	elif 120 < l < 125:
+		print """Ai aruncat cu o bucata de carne in Gopagon,
+		nimerindu-l pe fata. Mai are %d vieti.""" % (go-1)
+		go -= 1
+	elif l > 125:
+		print "Gopagonul s-o ferit de lovitura ta."
+	else:
+		pass
+	
+def pizdonul():
+	global leac
+	leac = 1
+	global v
+	global magie
+	global go
+	while v >= 1 and go >= 1:
+		print """\n\tGopagonul te loveste.
+		Incearca sa iti aperi o parte a corpului (pieptul, picioarele sau bostanul.)"""
+		b = raw_input("> ")
+		if "piept" in b:
+			lovitura_gopului("piept")
+		elif "picior" in b or "picioare" in b or "picioarele" in b:
+			lovitura_gopului("picior")
+		elif "bostan" in b:
+			lovitura_gopului("bostan")
+		else:
+			error()
+			pizdonul()
+		print """\n\tE randul tau sa lovesti. 
+	\n\tAlege o parte a corpului in care sa lovesti (picioare, piept sau bostan),
+	sau foloseste o magie, daca stii cum s-o faci."""
+		global a
+		a = raw_input("> ")
+		if "piept" in a:
+			lovitura_ta("piept")
+		elif "picior" in a or "picioare" in a:
+			lovitura_ta("picior")
+		elif "bostan" in a:
+			lovitura_ta("bostan")
+		elif len(a) > 10 and magie > 0:
+			print """\n\tAi folosit o putere magica.
+	Gopagonul s-o speriat si s-o retras cativa pasi inapoi, urland de frica.
+	Ai prins momentul si i-ai frecat una peste dinti.
+	Gopagonul mai are %d vieti.""" % (go - 1)
+			go -= 1
+			magie -= 1
+		elif len(a) > 10 and magie <= 0:
+			print """\n\tNe pare rau, ai ramas fara mana.
+			Plus la asta, Gopagonul incepe sa dezvolte imunitate la magie."""
+		elif ("lecuire" in a or "leac" in a or "viata" in a) and leac == 1:
+			print "\n\tAi fugit la o taraba din preajma si ai baut niste apa. Ai %d vieti." % (v + 2)
+			v += 2
+			leac = 0
+		elif ("lecuire" in a or "leac" in a or "viata" in a) and not leac == 1:
+			print """\n\tNe pare rau, apa s-a terminat.
+			O sa fii nevoit sa te descurci cu vietile ramase."""
+		else:
+			error()
+		if v == 0 and go >= 0:
+			print """\n\tAi pierdut. Gopagonul te-o doborat
+	si ti-o luat tot ce aveai pe tine.
+	Stai tavalit, plin de lovituri si sange, in mijlocul Pietii Centrale.
+	Lumea trece pe langa tine si incearca sa nu te observe.
+	Te trezesti la mijlocul noptii, 
+	iar o ploaie racoroasa e pe punctul de a incepe.
+	\n\tBrusc, iti amintesti ca esti mag si ca ai salvat inainte de batalie.
+	Vrei sa mai faci fata odata Gopagonului?!!!
+	VREI SA TE RAZBUNI, SI SA-TI INTORCI CHILOTII FURATI?
+			"""
+			while True:
+				inapoi = raw_input("> ")
+				if inapoi == "da" or inapoi == "Da":
+					print "\n\tSTRIGA! TU DOAR ESTI NERVOS. ARGHHHHHH!"
+				elif "DA" in inapoi or "!" in inapoi or "Da!" in inapoi or "DA!" in inapoi:
+					iesire()
+				elif "nu" in inapoi or "Nu" in inapoi:
+					dead("\n\tStai dar si ingheata in ploaia racoroasa de toamna.")
+				else:
+					error()
+		elif go == 0 and v > 0:
+			print """\n\tFelicitari, ai reusit sa dobori Gopagonul si sa salvezi omenirea.
+	Pentru actul eroic pe care l-ai facut,
+	omenirea iti va fi recunoscatoare pentru vecie."""
+	raw_input("> ")
+	print """\n\tIti va ridica statui, va numi strazi in numele tau
+	si va scrie numeroase carti de istorie despre tine."""
+	raw_input("> ")
+	print """\n\tO multime de biografii vor fi scrise despre tine
+	si numeroase citate de pe internet vor purta semnatura ta."""
+	raw_input("> ")
+	print """\n\tNumele tau va fi invocat inainte de batalii
+	si vei deveni simbolul curajului si a vitejiei."""
+	raw_input("> ")
+	print """\n\tAici se termina primul episod din jocul 'Marea Epopee Nationala'."""
+	raw_input("> ")
+	print """\n\tDaca ti-a placut jocul,
+	urmareste-ne pe pagina noastra de facebook (facebook.com/MareaEpopeeNationala),
+	unde asteptam comentariile si sugestiile tale, reclamatii si plangeri.
+	Plus, vom incerca sa va tinem la curent cu urmatoarele episoade ale acestui joc."""
+	print """\n\tApasa Enter pentru a te intoarce la viata reala,
+	unde putini oameni stiu ca existi."""
+	raw_input("> ")
+	exit(0)
+
+def pizdeala():
+	print """\n\tGopagonul arunca rasarita jos,
+	isi desface mainile si scoate strigatul specific aceste specii.
+	\n\tP*zdeala finala e pe cale sa inceapa."""
+	raw_input("> ")
+	"""\n\tPentru a te lupta cu infioratorul gopagon,
+	trebuie sa-l lovesti intr-o anumita regiune a corpului
+	(picioare, piept sau bostan) si sa blochezi loviturile lui.
+	\n\tLa randul lui, gopagonul va incerca sa te loveasca sau va folosi o putere speciala. 
+	Tu tot poti lovi cu magie, dar trebuie sa stii cum.
+	Esti gata?"""
+	while True:
+		gata = raw_input("> ")
+		if "Da" in gata or "da" in gata:
+			print "\n\tGopagonul loveste primul si incearca sa te surprinda."
+			pizdonul()
+			break
+		elif "Nu" in gata or "nu" in gata:
+			print "\n\tNiu, niu, mama, mama! Si-i mujik, bl*adi!"
+			pizdonul()
+		else:
+			error()
+
+
+def DaNu1(x, y, z):
+	x = 0
+	while True:
+		x = raw_input("> ")
+		if x == "da" or x == "Da" or x == "am" or x == "Am":
+			print y
+			while True:
+				alfa = raw_input("> ")
+				if "futa" in alfa or "nimic" in alfa or "nica" in alfa or "treaba ta" in alfa:
+					print "\n\tWai, da si tu esti asa jmot. Hai zi bl*a. Si tu asa cu patanii."
+					while True:
+						alfa = raw_input("> ")
+						if "futa" in alfa or "nimic" in alfa or "nica" in alfa or "treaba ta" in alfa or "nu" in alfa:
+							print "\n\tBl*a, si p*dar. Tu je nu ma respecti. Tu si, te-ai ah*it?"
+							DaNu2(x, "\n\tOi bl*aaaaaaaaa. Vseo, ska, tu esti mertvets.", """\n\tDa disi nu, bl*adi? Tu je esti padla!
+	Vseo, tu esti mertvets.""")
+							pizdeala()
+						elif "branza" in alfa or "carne" in alfa or "haine" in alfa or "brinza" in alfa:
+							print "\n\tOi bl*aaaa. Tu pisini ai facut p*dar, ska? Vseo, pana aisi ti-o fost."
+							pizdeala()
+						else:
+							error()
+				elif "branza" in alfa or "carne" in alfa or "haine" in alfa or "brinza" in alfa:
+						print "\n\tOi bl*aaaa. Tu pisini ai facut p*dar, ska? Vseo, pana aisi ti-o fost."
+						pizdeala()
+				else:
+					error()
+		elif x == "nu" or x == "Nu":
+			print z
+			pass
+			beta = raw_input("> ")
+			if "incearca" in beta or "gaseste" in beta:
+				print "\n\tDa tu esti curajos, eu vadka. Hai, hai s-om vede ce poti, ska!"
+				pizdeala()
+			else:
+				error()
+		else:
+			error()
+
+def iesire():
+	print """\n\tFelicitari. Ai reusit sa treci toate cele 3 etape.
+	Uita-te la tine, cat de frumos arati
+	cu o punga cu branza si carne si haine noi pe tine.
+	Mandru de ce ai facut, te indrepti fericit spre iesire."""
+	x = raw_input("> ")
+	print """\n\tAfara se insereaza deja 
+	si toti tarakanii ies afara din ascunzisuri pentru a vana."""
+	raw_input("> ")
+	print "\n\tBrusc, aerul din jurul tau se raceste si simti furnicaturi pe piele."
+	raw_input("> ")
+	print """\n\tPrivind in jur, vezi cum toata lumea se inchide in magazine
+	sau se ascunde dupa tarabe."""
+	raw_input("> ")
+	print "\n\tDintr-o butca de vandut casete incepe sa rasune o muzica epica."
+	raw_input("> ")
+	print """\n\tPortile Pietii Centrale se inchid
+	si boss-ul jocului se posteaza in fata ta."""
+	raw_input("> ")
+	print """\n\tSta atat de aproape, incat poti sa-i simti respiratia de rasarita,
+	iar ochiul vanat e atat de bine conturat!"""
+	raw_input("> ")
+	print "\n\tA, patsantre, n-ai o tigara?"
+	DaNu1(x, "\n\tO, mujik. Da tot pachetul. Da si ai tu acolo, in kuliok?", "\n\tDa daca gasesc?")
+
+def DaNu(x, y):
+	while True:
+		x = raw_input("> ")
+		if x == "da" or x == "Da":
+			y
+		elif x == "nu" or x == "Nu":
+			break
+		else:
+			error()
+
+def intrebarea_drumului():
+	print """\n\tIncerci, timp de cateva minute, 
+	sa intrebi oamenii despre locul de unde poti lua carne.
+	Din pacate, oamenii is izghiti si nu vor sa-ti zica nimic,
+	trecand in graba pe alaturi. 
+	\n\tUnii se scuza ca se grabesc, fara a te asculta,
+	altii iti zic ca nu au bani si trebuie sa lucrezi, nu sa cersesti,
+	iar altii zic ca ei nu cred in Dumnezeu si
+	nu vor sa auda despre ce zice Biblia."""
+	print """\n\tLa un moment dat,
+	un om al strazii se apropie de tine si iti cere 1 leu."""
+	while True:
+		act = raw_input("> ")
+		if "lovesc" in act or "sut" in act or "fund" in act or "cap" in act or "una" in act or "fugaresc" in act:
+			dead("\n\tOmu s-o suparat si o plecat nervos. Peste ceva timp s-o intors cu bratanii si te-o p***t.")
+		elif "refuz" in act or "nimic" in act or "ignor" in act or "feresc" in act or "nu dau" in act or "nu" in act:
+			print """\n\tOmu iti spune ca nu are ce manca
+	si ar trebui sa ajuti oamenii neajutorati. El, apropo, te poate ajuta."""
+		elif "dau" in act or "intind" in act or "daruiesc" in act or "1 leu" in act:
+			print """\n\tOmu te multumeste si te intreaba ce tot intrebi la oamenii din jur.
+	Tu, disperat si z**bit, ii zici ce cauti
+	si el rade si-ti zice sa-l urmezi.
+	Peste ceva timp, ajungeti intr-un pavilion,
+	care miroase puternic a carne, slanina si transpiratie."""
+			raw_input("> ")
+			dep_carne()
+		else:
+			error()
+
+def dep_carne():
+
+	print """\n\tFelicitari, ai reusit sa ajungi la departamentul pentru carne.
+	Aici, dupa cum auzi si din strigatele vanzatoarelor,
+	care te tot cheama sa te uiti la marfa lor,
+	sau chiar s-o gusti, poti gasi de toate:
+	carne de porc, carne de jita, carne de gaina, siorik, slanina etc etc.
+	La auzul acestor vorbe, iti amintesti ca cineva ti-o zis
+	ca asta e Paradisul studentilor si a oamenilor strazii.
+	Tu intelegi de ce a studentilor, da de ce si a oamenilor strazii?"""
+	print """\n\tTrecand peste toate aceste ganduri,
+	trebuie sa te te decizi ce carne vrei sa cumperi:
+	carne de porc, ca-i mai grasa, carne de jita, ca suna hazliu,
+	sau carne de gaina, ca fierbe mai rapid?"""
+	cumparaturi()
+
+def cumparaturi():
+	while True:
+		carne = raw_input("> ")
+		if "porc" in carne or "Porc" in carne:
+			print """\n\tAi cumparat carne de porc,
+	pentru ca ii grasa si tie iti place tot ce-i gras.
+	Iaca Valentina, de exemplu. 
+	Toti zic ca-i grasa si crapa ca porcul toata ziua,
+	da ea tie iti place.
+	\n\tIti place pentru ca are ceva specific in ea.
+	Pentru ca are un copil inauntru care mereu incearca sa iasa din ea.
+	Iti place pentru ca poate gati tari ciotkie blinele
+	si nu umbla cu variante si unghii false.
+	Iti place pentru ca poti vorbi cu ea despre tot,
+	si niciodata nu se rusineaza sa se pupe in public, pe-un scaun.
+	\n\tIti place Valentina pentru ca ea ii femeie jestokaia, boevaia,
+	si mereu o sa te apere si o ai cu cine lega jiia la primavara.
+	Iti place pentru ca o sa tina gospodaria
+	si o sa iti faca copchii frumosi, sanatosi si voiosi.
+	Pur si simplu iti place pentru cine este."""
+			print "\n\tCe vrei sa mai cumperi?"
+		elif "jita" in carne or "Jita" in carne or "vita" in carne:
+			print """\n\tAi cumparat carne de jita,
+	pentru ca suna hazliu si tie iti place tot ce-i hazliu. 
+	Tu in genere esti o persoana hazlie si glumeata
+	si cu simtul umorului dezvoltat pe care mereu toti il apreciaza.
+	Asta inseamna ca ai foarte multe in comun cu cel care o facut jocul asta,
+	pentru ca el tot are un simt al umorului foarte dezvoltat.
+	\n\tIaca spre exemplu un banc tare ciotkii.
+	Intra doua balene intr-un bar
+	si prima balena spune: 'Muaaaaaaaaaaaaaaaaaawuuuuuuaaaaa'.
+	A doua balena se intoarce la prietena sa si-i spune:
+	'Mihaela, Ce-ai patit?'
+	Tare ciotkii banc. Apasa enter daca mai vrei unu si mai ciotkii. 
+	Da da, asa ceva exista!"""
+			raw_input("> ")
+			print """\n\tStiam ca o sa apreciezi umorul meu devastator.
+	Iata bancul promis:"""
+			print """\n\tUn mar si un roman cad dintr-un copac din Transnistria.
+	Ce atinge primul pamantul?
+	\n\tEvident ca marul, pentru ca pe roman il opreste franghia.
+	Haha. Foarte hazliu. Genial."""
+			print "\n\tCe vrei sa mai cumperi?"
+		elif "gaina" in carne or "Gaina" in carne:
+			print """\n\tAi cumparat carne de gaina,
+	pentru ca ea fierbe rapid si tu nu ai timp pentru ceva ce fierbe greu.
+	Era odata un om care tot era foarte grabit
+	si facea vreo 10 lucruri odata.
+	El chiar reusea sa faca rapoarte in PowerPoint
+	in timp ce facea sex cu nevasta-sa,
+	si mima orgasmul cand vedea ca-i deja ora 23
+	si trebuie sa se trezeasca la 6 a doua zi.
+	\n\tAvea o singura fiica si aia foarte trista,
+	pentru ca cand o trebuit sa-i aleaga un nume,
+	o luat primul nume pe care doctorul l-a propus,
+	in gluma, cand a vazut copilul pentru prima data.
+	\n\tIata asa, trista povestea barbatului care are o fiica pe nume Concita."""
+			print "\n\tCe vrei sa mai cumperi?"
+		elif "nimic" in carne or "gata" in carne or "terminat" in carne:
+			print """\n\tAi terminat de cumparat carne.
+	In timp ce asteptai ca vanzatoarea sa-ti cantareasca carnea,
+	o babuta s-o apropiat de taraba si o inceput sa studieze marfa
+	Cand vanzatoarea s-o intors cu fundu la ea,
+	babuta o apucat o bucata de siorik si o muscat din el, luand restul cu ea 
+	si aruncandu-ti o privire de cand_iti_f*t_una daca zici ceva.
+	Ai inteles de ce e Paradisul oamenilor strazii."""
+			print "\n\tNu mai ai ce face aici. Te intorci in centru?"
+			global gatac
+			into = raw_input("> ")
+			if into == "Da" or into == "da":
+				gatac = True
+				centru()
+			else: print "\n\tVrei nu vrei, trebuie sa vrei."
+			centru()
+			gatac = True
+		else:
+			error()
+			cumparaturi()
+
+def departarea(x, k):
+
+	directia = raw_input("> ")
+	if "Nord" in directia or "nord" in directia or "Sud" in directia or "sud" in directia or "Est" in directia or "Vest" in directia or "vest" in directia or "est" in directia:
+		print x
+		print "\n\tMai departe incotro? Nord, Est, Vest, Sud??"
+	else:
+		error()
+
+def Siberia():
+	print """\n\tAi ajuns in Siberia, unde esti inconjurat de o haita de lupi flamanzi.
+	Te bate gandul ca poate te-ai ratacit.
+	Lupii se apropie din ce in ce mai aproape si vorbesc in rusa,
+	incercand sa te calmeze si sa te intrebe ce cauti aici, porc american.
+	Ti-ai dat seama ca ai de afacere cu o satra de lupi KGB-isti.
+	Din fericire, tu esti mag. Te teleportezi inapoi in Piata Centrala?"""
+	while True:
+		teleport = raw_input("> ")
+		if teleport == "Da" or teleport == "da":
+			print """\n\tTrebuie sa rostesti cuvantul magic.
+	Lupii se apropie din ce in ce mai mult."""
+			print """\n\tAi o singura sansa.
+	Daca gresesti o singura litera sau o dai in bara, esti prins."""
+			abracadabra = raw_input("> ")
+			if abracadabra == "abracadabra":
+				print """\n\tAi reusit sa te teleportezi in Piata Centrala.
+	Nu te intreb ce vrei sa faci, 
+	pentru ca tu vrei sa intrebi drumul de la oamenii din piata."""
+				intrebarea_drumului()
+			else:
+				pierdut()
+		elif teleport == "nu" or teleport == "Nu":
+			print """\n\tPentru ca esti plin de curaj si lipsit de altceva,
+	incerci sa faci fata lupilor KGB-isti."""
+			pierdut()
+		else:
+			print """\n\tAici situatia e de criza, 
+	da tu nici sa scrii normal nu poti. Oleaca trist."""
+			print "Iti dau mai dau o sansa."
+			raw_input("> ")	
+
+def pierdut():
+	print """\n\tDin pacate, ai dat-o-n bara si rusii te-o prins.
+	Cuvantul magic era abracadabra.
+	Trezindu-te, simti o peruca pe cap, ruj pe buze
+	si privirea flamanda a unui moscovit.
+	\n\tMai tarziu intelegi ca, din cauza crizei actuale,
+	rusii au decis sa scoata profit din prizonierii sai.
+	Cand o mana grasa se atinge de piciorul tau,
+	iti amintesti ca esti mag si poti da timpul inapoi. Incerci?"""
+	while True:
+		teleport = raw_input("> ")
+		if teleport == "Da" or teleport == "da":
+			print """\n\tTrebuie sa rostesti cuvantul magic.
+			Mana avanseaza pe corpul tau si lumea devine mai intunecata."""
+			print """\n\tAi o singura sansa. 
+	Daca gresesti o singura litera sau o dai in bara, esti mort."""
+			abracadabra = raw_input("> ")
+			if abracadabra == "abracadabra":
+				print "\n\tAi reusit sa dai timpul inapoi, dar nu cu mult."
+				Siberia()
+			else:
+				dead("""\n\tLumea devine din ce in ce mai intunecata, 
+	iar tu simti cum ceva mare si gras te atinge peste tot.
+	Vei fi 'prizonier' in Moscova pana la adanci batranete
+	si vei fi batut regulat, pentru a fi ascultator.""")
+		else:
+			dead("""\n\tLumea devine din ce in ce mai intunecata,
+	iar tu simti cum ceva mare si gras te atinge peste tot.
+	Vei fi 'prizonier' in Moscova pana la adanci batranete 
+	si vei fi batut regulat, pentru a fi ascultator.""")
+
+def singurel():
+	x = 5
+	print "\n\tAi decis sa cauti singur drumul, asa cum un adevarat barbat face."
+	print "\n\tDe unde vrei sa incepi? Mergi la Nord, la Sud, la Est sau la Vest?"
+	while True:
+		departarea("""\n\tTe-ai pornit sa cauti carnea.
+	Mergand pe drum, ai gasit de toate, inafara de carne.""", 1) 
+		departarea("""\n\tTreci pe langa niste masine parcate pe trotuar, iar oamenii se raresc.
+	Nu mai esti nevoit sa te atingi de ei pentru a te misca.""", 2)
+		departarea("\n\tAi ajuns la monumentul lui Stefan cel Mare si Sfant.", 3)
+		departarea( """\n\tEsti oprit de un tip imbracat in albastru care iti cere pasaportul.""", 4)	
+		departarea("""\n\tEsti pe malul Nistrului.
+	In jur de 20 de luntre trec raul cu cate vreo 70 de oameni la bord.
+	30 dintre ei se ineaca.""", 5)		
+		directia = raw_input("> ")
+		x = 6
+		if directia == "Nord" or directia == "nord" or directia == "Sud" or directia == "sud" or directia == "Est" or directia == "Vest" or directia == "vest" or directia == "est" and x == 6:
+			Siberia()
+		else:
+			error()
+
+def omul_intrebat():
+	intrebare = "\n\tAcuma vrei sa intrebi pe cineva sau sa cauti singurel drumul?!"
+	print """\n\tAi decis sa te aventurezi la una dintre cele mai periculoase actiuni
+	din Piata Centrala: sa opresti un om.
+	Multe persoane au incercat sa faca ceea ce vrei tu sa faci acum,
+	dar putine au reusit.
+	(muzica solemna suna pe fundal dintr-o masina cu geamurile deschise.)
+	\n\tDe obicei, oamenii te ignora, se scuza, striga
+	'Eu nu stiu nimic' sau 'Ea necego ne znaiu' si incep a alerga. 
+	Legendele spun ca odata o batranica s-a oprit 
+	si i-a explicat drumul unui strain, in romana.
+	Esti sigur ca vrei sa calci pe acest drum periculos si plin de primejdii?"""
+	while True:
+		pericol = raw_input("> ")
+		if pericol == "da" or pericol == "Da":
+			intrebarea_drumului()
+		elif pericol == "nu" or pericol == "Nu":
+			print "\n\tVrei sa cauti drumul singur?"
+			singur = raw_input("> ")
+			if singur == "da" or singur == "Da":
+				singurel()
+			elif singur == "nu" or singur == "Nu":
+				print "\n\tNici nu vrei sa intrebi, da nici nu vrei cauti singur. Esti cam indecis."
+				print "\n\tEu stiu de ce ai nevoie! De niste informatii generale!"
+				print """\n\tSe spune ca prima masina sovietica se numea 'Rodina',
+	dar numele a fost schimbat dupa ce Stalin a intrebat 'Si cu cat o s-o vindeti?'"""
+				intreb = 0
+				print intrebare
+				DaNu(intreb, intrebare_loop)
+				print "\n\tPinguinii au, de fapt, genunchi, doar ca is in interiorul lor, si nu-i pot indoia."
+				print intrebare
+				DaNu(intreb, intrebare_loop)
+				print "\n\tPasarile au 2 aripi. Tu deamu incepi sa ma enervezi!!!"
+				print intrebare
+				DaNu(intreb, intrebare_loop)
+				print "\n\tOamenii tot is animale! La fel ca jitele! Deci unii oameni is jite!"
+				print intrebare
+				DaNu(intreb, intrebare_loop)
+				print """\n\tBun, ai decis sa cauti singurel drumul! Tashi!
+				Ai decis sa cauti drumu am zis!"""
+				singurel()
+			else:
+				error()
+		else:
+			error()
+
+def carne():
+	print "\n\tAi ales sa cumperi carne."
+	print """\n\tDin pacate, nu stii unde poti cumpara asa bogatie in Piata Centrala.
+	Daca esti barbat, probabil asta o sa fie o problema pentru tine,
+	din moment ce barbatii adevarati nu intreaba drumul niciodata. 
+	Tu decizi. Ce facem?"""
+	raw_input("> ")
+	print """\n\tStiai ca carnea este, dupa aur, argint, apartamente cu 1 odaie,
+	masini cu numere moldovenesti si repararea drumurilor,
+	unul dintre cele mai scumpe lucruri din Republica Moldova?"""
+	raw_input("> ")
+	print """\n\tMai mult, multi vanzatori 'ambulanti' din Piata Centrala
+	nu au certificate de la veterinar. Da da, iata asa."""
+	raw_input("> ")
+	print """\n\tSi Ion, acela cu mopedu, o iubeste pe Ana, 
+	da sufera pentru ca ea are un prieten foarte gelos care l-o batut odata."""
+	raw_input("> ")
+	print "\n\tSi daca indoi o hartie de numaistiucateori, poti ajunge pana la luna."
+	print "\n\tGata, nu mai fac asa ceva. khm khm. Deci ce vrei sa faci mai departe?"
+	raw_input("> ")
+	print "\n\tSau poate da! Mihihihi. Stiai ca rosia e fruct? Nu stiai!"
+	print "\n\tGata. Acuma serios. Unde mergem?"
+	raw_input("> ")
+	print """\n\tSau poate stam pe loc! MUAHAHAHAHA.
+	Balena e mamifer, da nu peste! Stiai asta? A? A? Da? Blin."""
+	print "\n\tGata, am terminat cu cunostintele mele vaste."
+	intrebare_loop()
+	
+def intrebare_loop():	
+	print """\n\tZi, ce facem? Intrebi pe cineva 
+	sau incerci sa gasesti singur drumul spre carne?"""
+	while True:
+		drum = raw_input("> ")
+		if "intreb" in drum or "cineva" in drum:
+			omul_intrebat()
+		elif "singur" in drum or "gasesc" in drum:
+			singurel()
+		else:
+			print "\n\tAcuma serios, omu. Zi ce facem mai departe."	
+
+def magazinele(x):
+	b = x
+	print """\n\tTe-ai apropiat de magazinele inchise din stanga
+	si ai inceput sa le studiezi.
+	Unele sunt acoperite cu jaluzele din fier,
+	avand diferite desene pe ele.
+	\n\tUnul dintre ele are jaluzele distorsionate
+	de loviturile mai multor picioarele.
+	Langa ele, ceva mai incolo, pe jaluzele altor cateva magazine,
+	vezi un curcubeu de culori cu cateva inscriptii."""
+	raw_input("> ")
+	print """\n\tCu negru e scris:
+	\n\t\"Basarabia Pamant Romanesc\".
+	\n\tCu rosu, mai jos, e scris:
+	\n\t\"O p*la voua, p***rajilor\".
+	\n\tDeasupra aceste inscriptii e scris cu albastru si ceva mai gros:
+	\n\t\"Limba romana, Unica Stapana.\"
+	\n\tIar in dreapta, cu verde, e scris:
+	\n\t\"Eu vorghesc moldoveneste, s*ka.\"
+	\n\tSub toate aceste inscriptii e desenat organul sexual masculin
+	si o sageata catre prima fraza.
+	Brusc ai inceput sa simti foarte puternic mirosul de urina.
+	Ai decis sa te intorci inapoi pe ulicioara."""
+	raw_input("> ")
+	if b == 1:
+		ulicioara()
+	elif b == 2:
+		ulicioara2()
+	else:
+		pass
+
+def barul():
+	print """\n\tAi incercat sa-i intrebi pe barbatii
+	care striga la un perete.
+	Unul dintre ei s-o intors si s-o uitat straniu la tine. 
+	Dupa asta s-o intors iar la perete.
+	\n\tAi mai intrebat odata, si dupa asta unul o cazut jos. 
+	Se pare ca vomita.
+	In timpul asta, 
+	al treilea si-o coborat mainile si ai auzit un slit deschizandu-se.
+	Ai decis sa-ti intorci privirea spre ulicioara."""
+	raw_input()
+	ulicioara2()
+
+def operatia():
+	raw_input("> ")
+	print "\n\tFacem."
+	raw_input("> ")
+	print "\n\tBuna decizie."
+	raw_input("> ")
+	print """\n\tUps, te-ai intors iar la autobusul Chisinau - Moscova. 
+	Mirosul asta de branza..."""
+	print """\n\tDe-ai putea sa treci subtil pe langa oameni
+	si sa apuci o bucata de branza de la cineva...."""
+	while True:
+		masca = raw_input("> ")
+		if "subtil" in masca or "trec" in masca or "langa" in masca or "linga" in masca or "apropii" in masca:
+			print """\n\tIntonand piesa din Pantera Roz,
+	te apropii de bagajele oamenilor care stau in autobus."""
+			print """\n\tIntr-o geanta, ca o regina, sta o bucata de branza
+	intr-un culiok care e-n alt culiok dintr-un culiok."""
+			while True:
+				masca2 = raw_input("> ")
+				if "apuca" in masca2 or "branza" in masca2 or "culiokul" in masca2 or "culioku" in masca2 or "fura" in masca2 or "iau" in masca2 or "ia" in masca2 or "brinza" in masca2:
+					print "\n\tAi furat regina de pe tronul ei din geanta."
+					print """\n\tIncet, subtil, urland ca un nebun si sarind cate 3 metri deodata,
+	te indepartezi de autobus."""
+					print """\n\tAi reusit sa scapi doar pentru ca oamenii au crezut ca esti un alcoolic. 
+	Felicitari, AI GASIT BRANZA!!!"""
+					raw_input("> ")
+					global gatab
+					gatab = True
+					centru()
+				else:
+					print "\n\tcare %s, omule? IA BRANZA!!!" % masca2
+		else:
+			print "\n\tcare %s, omule? Apropii-te subtil de autobus..." % masca
+
+def autobusul():
+	while True:
+		print """\n\tIn timp ce te indreptai spre grupul zgomotos de oameni,
+	ai simtit cum mirosul de branza devine mai puternic.
+	Fiind foarte aproape de acel grup de oameni,
+	simti ca te sufoci cu mirosul de branza adevarata, moldoveneasca.
+	Ai ajuns la capatul ulicioarei si simti cum esti gata
+	sa iti pierzi constiinta de la acest miros mirificator. 
+	Iesi de pe ulicioara?"""
+		da = raw_input("> ")
+		if "da" in da or "Da" in da:
+			print """\n\tAi iesit de pe ulicioara si, trecand de oameni,
+	ai reusit sa te apropii de sursa mirosului de branza.
+	in fata ta se dezvaluie o priveliste care iti taie respiratia."""
+			print """\n\tMandru ca un moldovean, colorat in verde si gata de plecare,
+	e autobusul Chisinau - Moscova."""
+			print "\n\tNe pare rau, dar se pare ca ai fost pacalit."
+			raw_input("> ")
+			print """\n\tDezamagit si flamand dupa branza,
+	te intorci pe strazile Pietii Centrale.
+	\n\tMai plimba-te putin. Nord, Sud, Est, Vest."""
+			operatia()
+		elif "nu" in da or "Nu" in da:
+			print "\n\tIara iti faci de cap. Ai iesit de pe ulicioara!"
+			print """\n\tAi iesit de pe ulicioara si, trecand de oameni,
+	ai reusit sa te apropii de sursa mirosului de branza.
+	in fata ta se dezvaluie o priveliste care iti taie respiratia."""
+			print """\n\tMandru ca un moldovean, colorat in verde si gata de plecare,
+	e autobusul Chisinau - Moscova."""
+			print "\n\tNe pare rau, dar se pare ca ai fost pacalit."
+			raw_input("> ")
+			print """\n\tDezamagit si flamand dupa branza,
+	te intorci pe strazile Pietii Centrale.
+	\n\tMai plimba-te putin. Nord, Sud, Est, Vest."""
+			operatia()
+		else:
+			error()
+			autobusul()
+
+def ulicioara():
+	print """\n\tTe afli pe o ulicioara. 
+	In stanga ta se afla un rand de magazine inchise,
+	in dreapta un bar cu cativa barbati care striga la un perete,
+	iar in fata ta sunt multi oameni care striga ceva si rad zgomotos."""
+	while True:
+		ulc = raw_input("> ")
+		if "bar" in ulc or "dreapta" in ulc or "barbati" in ulc or "barul" in ulc:
+			barul()
+		elif "stanga" in ulc or "magazine" in ulc:
+			magazinele(1)
+		elif "inainte" in ulc or "fata" in ulc or "oameni" in ulc:
+			autobusul()
+		else:
+			error()
+
+
+def ulicioara2():
+	print """\n\tTe afli pe o ulicioara.
+	In stanga ta se afla un rand de magazine inchise,
+	in dreapta un bar cu cativa barbati in diferite ipostaze:
+	unul e jos si vomita, altul vorbeste in soapte cu peretele,
+	iar altul se urineaza pe acesta.
+	In fata ta sunt multi oameni care striga ceva si rad zgomotos."""
+	ulc = raw_input("> ")
+	if "bar" in ulc or "dreapta" in ulc or "barbati" in ulc or "barul" in ulc:
+		print """\n\tPentru ca esti curajos,
+	ai mai incercat sa vorbesti cu barbatii de langa perete.
+	I-ai intrebat daca au nevoie de ambulanta.
+	Unul dintre ei a zis sa te duci in ***** ****. 
+	Ai decis sa-i ignori."""
+		raw_input("> ")
+		ulicioara2()
+	elif "stanga" in ulc or "magazine" in ulc:
+		magazinele(2)
+	elif "inainte" in ulc or "fata" in ulc or "oameni" in ulc:
+		autobusul()
+	else:
+		error()
+
+
+def branza():
+	print """\n\tAi ales sa cauti branza.
+	Branza e un fenomen foarte raspandit in  Republica Moldova.
+	Ea poate fi intalnita in aproape orice casa si orice reteta.
+	De la branzoaie la branzica, branzulica si branzecel, ea e peste tot."""
+	print """\n\tPentru a gasi branza, o sa fii nevoit sa apelezi la miros,
+	Pentru ca branza adevarata asta ti-i gunoi:
+	ea nu poate fi gasita la orice colt."""
+	print """\n\tPlimba-te prin piata, incercand sa prinzi mirosul branzei.
+	Incearca sa mergi la sud sau nord sau stanga sau dreapta
+	sau inainte sau la est sau la vest sau unde vrei tu."""
+	raw_input ("> ")
+	print "\n\tOk, facem."
+	raw_input("> ")
+	print "\n\tInteles. Imediat."
+	raw_input ("> ")
+	print "\n\tIote, o femeie cu o caldare cu branza. Fa ceva!!!"
+	while True:
+		caldare = raw_input("> ")
+		if "urmareste" in caldare or "femeie" in caldare or "branza" in caldare or "brinza" in caldare or "caldare" in caldare or "dupa" in caldare:
+			print """\n\tTe-ai pornit dupa femeie. 
+	Ai lovit un mujic si el te-o numit bidla.
+	\n\tMirosul se intensifica. Esti pe calea cea buna, fiul meu!"""
+			raw_input("> ")
+			print """\n\tAi pierdut femeia din vizor. Ce facem mai departe?
+	\n\tEu, in locul tau, m-as uita in jur."""
+			while True:
+				s = raw_input("> ")
+				if "jur" in s or "uita" in s or "uite-te" in s or "locatie" in s:
+					ulicioara()
+				else:
+					error()
+					print "\n\tUita-te, omule, in jur."
+		else: error()
+		print """\n\tCand vezi o femeie cu branza, cum se intampla acum,
+		trebuie sa te pornesti dupa ea, ca sa o prinzi din urma."""
+
+	
+def gasim():
+	print "\n\t Femeia insista."
+	print "\n\t'Da si iti trebuie, dragul meu? Ca acus gasim. Zi, ce vrei?'"
+	nevoie = raw_input("> ")
+	if "Nimic" in nevoie or "nimic" in nevoie or "nu" in nevoie or "Nu" in nevoie or "nica" in nevoie or "Nica" in nevoie or "NIMIC" in nevoie or "NICA" in nevoie:
+		gasim()
+	else:
+		print "\n\t'Amus gasim, dragul meu. Ma dus sa vad in sclad. Astepti oleaca?"
+		astept = raw_input("> ")
+		if "Da" in astept or "da" in astept:
+			print "\n\t'Amus vin, stai oleaca."
+			a = raw_input("> ")
+			print """\n\t'Nu am gasit %s, da iaca uite
+	ce pantalonasi, bluzite, maiciki, coltuni, chilotei si camesute am.'""" % nevoie
+			print "\n\t'Hai cumpara ceva, nu fi jmot.'"
+			cumperi_haine()
+		elif "Nu" in astept or "nu" in astept:
+			print "\n\tDupa cateva 'nu'-uri si 'nimic'uri, ai reusit sa scapi de ea."
+			print "\n\tFelicitari, ai supravietuit departamentului pentru haine."
+			global gatah
+			gatah = True
+			raw_input("> ")
+			centru()
+		else:
+			error
+			gasim()
+
+def cumperi():
+	print "\n\tAsa-i ca vrei sa mai cumperi ceva?"
+	pra = raw_input("> ")
+	if "da" in pra or "Da" in pra:
+		cumperi_haine()
+	elif "nu" in pra or "Nu" in pra:
+		gasim()
+	else:
+		error
+		cumperi()
+		
+def cumperi_haine():
+	print """\n\tCe anume vrei sa cumperi din 
+	pantalonasi, bluzite, maiculitsa, coltuni, chilotei, camesute?"""
+	pr = raw_input("> ")
+	if "pantalonasi" in pr or "pantaloni" in pr or "Pantalonasi" in pr:
+		print "\n\tAi cumparat o pereche de  pantalonasi." 
+		print"""\n\t'Calitativi, or sa tina o vesnicie. Materialu-i bun, n-ai sa regreti.
+	 Oho, io-te ce bine se aranjeaza pe tine.'"""
+		cumperi()
+	elif "bluzita" in pr or "bluzite" in pr or "Bluzita" in pr:
+		print "\n\tAi cumparat o bluzita."
+		print """\n\t'De calitate bluzita, Turcia, foarte buna.
+	Fiica mea tot o cumparat si dupa asta o venit toate prietenele ei incoa.'"""
+		cumperi()		
+	elif "maiculitse" in pr or "maiculitsa" in pr or "maiou" in pr:
+		print "\n\tAi cumparat un maiou."
+		print "\n\t 'Sotul meu umbla 5 ani cu una pe care ma-sa o cumparat-o de la mine.'"
+		cumperi()
+	elif "coltuni" in pr or "coltun" in pr:
+		print "\n\tAi cumparat o pereche de coltuni."
+		print """\n\t'Iaca fix asa i-am luat si lu feciormi-o.
+	Tare i-o placut. Nu miroase deloc.'"""
+		cumperi()
+	elif "camasa" in pr or "camesute" in pr or "camese" in pr:
+		print "\n\tAi cumparat o camesuta."
+		print """\n\t'Daca de zapravlit in pantalonasi, o sa fie numa buna.
+	Daca vrei, poti s-o cosi asa, prin parti, da tare ghini iti mai sta.'"""
+		cumperi()
+	elif "chilotei" in pr or "Chilotei" in pr:
+		print "\n\tAi cumparat o pereche de chilotei."
+		print """\n\t'Purtam de astia cand eram fata mare.
+	Da mai mult erau pe jos decat pe mine. HAHAHAHA.'"""
+		cumperi()
+	elif "gata" in pr or "nimic" in pr or "Gata" in pr or "Nimic" in pr or "Terminat" in pr or "nu" in pr:
+		gasim()
+		print """\n\tN-o sa scapi asa de ea.
+		Nu mai incerca atata %r. Incearca altceva.""" % pr
+	else:
+		error()
+		cumperi_haine()
+
+def dep_haine():
+	print "\n\tAi reusit sa intri in departamentul pentru haine. Felicitari!"
+	print """\n\tPlimbadu-te prin departament,
+	iti sare in fata o femeie grasa pe nume Liuba, care striga:
+	'Pantalonasi, bluzite, maiciki, coltuni, chilotei, camesute.'
+	Vrei sa cumperi ceva din astea?
+	"""
+	one = raw_input("> ")
+	if one == "Da" or one == "da":
+		cumperi_haine()
+	elif one == "Nu" or one == "nu":
+		gasim()
+	else:
+		error()
+		dep_haine()
+
+def femeie_ferita():
+	print """\n\tFemeia s-o ferit si intrarea e libera.
+	Intri in departamentul pentru haine?"""
+	while True:
+		dep = raw_input("> ")
+		if "Da" in dep or "da" in dep:
+			dep_haine()
+		elif "Nu" in dep or "nu" in dep:
+			print """\n\tMoldova asta nu ti-i deal pe vale.
+			 Aici parerea ta nu conteaza mereu."""
+			dep_haine()
+		else:
+			error()
+			
+
+def cumparat_aifon():
+	print """\n\tAi cumparat un Iphone cu 500 de lei.
+	Mabila ii stinsa, incerci s-o pornesti?"""
+	pornesti = raw_input("> ")
+	if pornesti == "Da" or pornesti == "da":
+		print """\n\tAi pornit mabila.
+	Peste cateva clipe, politia noastra operativa te-o zahvatit.
+	Ca prin minune, femeia o disparut. 
+	Totusi, politia noastra operativa nu stie ca tu esti mag. 
+	Incearca sa folosesti cuvinte magice si sa scapi de ea.
+	Ai putea, de exemplu,
+	sa folosesti cuvantul 'imperforatiune' sau 'extremitate'"""
+		aldoilea = False
+		while True:
+			cuvinte = raw_input("> ")
+			if (cuvinte == "imperforatiune" or cuvinte == "extremitate" or len(cuvinte) >= 10 or cuvinte == "abracadabra") and not aldoilea:
+				print """\n\tPolitistii se uita straniu la tine. Ei nu inteleg nimic.
+	Lumea devine confuza pentru ei.
+	Mai da-i cu ceva magic si arcanic!"""
+				aldoilea = True
+
+			elif (cuvinte == "imperforatiune" or cuvinte == "extremitate" or len(cuvinte) >= 10 or cuvinte == "abracadabra") and aldoilea:
+				print """\n\tPolitia e confuza. Nu stie ce sa faca si se duce sa sune la nacialnik.
+	Vrei sa fugi?"""
+				fuga = raw_input("> ")
+				if fuga == "Da" or fuga == "da":
+					dep_haine()
+				else:
+					dead("\n\tO venit nacialniku si te-o zahvatit.")
+			else: 
+				error()
+	elif pornesti == "Nu" or pornesti == "nu": 
+		print "\n\tFemeia s-o ferit si intrarea e libera. Intri in departamentul pentru haine?"
+		dep = raw_input("> ")
+		if dep == "Da" or dep == "da":
+			dep_haine()
+		elif dep == "Nu" or dep == "nu":
+			print "\n\tMoldova nu ti-i deal pe vale. Aici nu ai mereu drept de alegere."
+			dep_haine()
+		else:
+			error()
+			femeie_ferita()
+	else:
+		error()
+		cumparat_aifon()
+
+
+def haine():
+	print """\n\tAi ales sa mergi la departamentul pentru haine.
+	Peste jumatate de ora de imbulzeala, reusesti sa ajungi la el.
+	In fata usii este o femeie cu un iPhone, 
+	care costa doar 500 de lei si-i nou-nout.
+	Mabila nu-i furata si o da asa ieftin ca ii trebuie urjent bani.
+	Cumperi mabila sau incerci sa treci pe alaturi?"""
+	next = raw_input("> ")
+	if "cumpar" in next or "mabila" in next or "da" in next:
+		cumparat_aifon()	
+	elif "alaturi" in next or "nu" in next or "trec" in next:
+		print """\n\tFemeia insista si zice ca are 20 de copchii acasa,
+	si nu are cu ce-i hrani. Nu fi jita. Acuma cumperi?"""
+		next1 = raw_input("> ")
+		if next1 == "da" or next1 == "Da":
+			cumparat_aifon()
+		else:
+			print """\n\tDomnu sa te aiba in paza, porc egoist ce esti. 
+	Nu vrei sa ajuti o femeie sarmana, vai de capul ei!"""
+			femeie_ferita()
+	else:
+		error()
+		haine()
+
+def start2():
+	print """\n\tAventura ta incepe in Piata Centrala, cel mai aglomerat loc din Europa, 
+	cu o populatie de circa 100 oameni pe metru patrat.
+	Trebuie sa cumperi carne, branza si haine, 
+	si dupa asta sa mergi spre Iesire. 
+	Incepi din centru,
+	unde stai pe loc si te feresti de tacikile care trec pe alaturi.
+	Ce vrei sa cumperi la inceput (carne, branza, haine)?
+	"""
+	start6 = raw_input("> ")
+	if "haine" in start6:
+		haine()
+	elif "branza" in start6 or "brinza" in start6:
+		branza()
+	elif "carne" in start6:
+		carne()
+	else:
+		error()
+		start2()
+
+def centru():
+	print """\n\tAi trecut o etapa.
+	\n\tTe-ai intors in centrul Pietii Centrale.
+	\n\tCe vrei sa cumperi acum din haine, carne sau branza?
+	\n\tSau poate ai cumparat tot si vrei sa te indrepti spre iesire?"""
+	while True:
+		start6 = raw_input("> ")
+		if "haine" in start6 and not gatah:
+			haine()
+		elif "haine" in start6 and gatah:
+			print "\n\tDeja ai fost in acest departament. Alege altul."
+		elif ("branza" in start6 and not gatab) or ("brinza" in start6 and not gatab):
+			branza()
+		elif ("branza" in start6 and gatab) or ("brinza" in start6 and gatab):
+			print "\n\tDeja ai fost in acest departament. Alege altul."
+		elif "carne" in start6 and not gatac:
+			carne()
+		elif "carne" in start6 and gatac:
+			print "\n\tDeja ai fost in acest departament. Alege altul."
+		elif "Iesire" in start6 or "iesire" in start6 and not (gatah and gatac and gatab):
+			print "\n\tNu ai cumparat tot de ce ai nevoie. Inca nu poti parasi piata."
+		elif "iesire" in start6 or "Iesire" in start6 and (gatah and gatab and gatac):
+			iesire()
+		else:
+			error()
+
+def introducere():
+	print """
+	\n\tPentru a te juca, o sa fii nevoit sa iti pui imaginatia la incercare.
+	\n\tDescrierea imprejurimii o vei vedea pe ecran, in forma de text.
+	\n\tPoti interactiona cu lumea din jur cu ajutorul cuvintelor
+	pe care trebuie sa le scrii, la un moment dat.
+	\n\tUneori, doar pentru a nu iti supraincarca creierul,
+	 o bucata de text va fi divizata,
+	si vei fi nevoit sa apesi Enter pentru a continua.
+	\n\tAcum vei trece un mic test pentru a intelege cum functioneaza jocul.
+	Scrie cuvantul 'test' pentru a continua."""
+	while True:
+		a = raw_input("> ")
+		if a == "test":
+			print """\n\tFelicitari, ai trecut testul.
+	Esti gata sa incepi jocul! Mult succes."""
+			print "\n\tPentru a continua, apasa Enter."
+			raw_input("> ")
+			print """\n\tDaca ti-a placut jocul,
+	unde poti urmari pe pagina noastra de facebook: 
+	\n\tfacebook.com/MareaEpopeeNationala
+	\n\tunde, probabil, te vom tine la curent cu urmatoarele episoade.
+	Asteptam comentarii si sugestii.
+	Gata, da-i Enter pentru a continua."""
+			raw_input("> ")
+			start2()
+		else:
+			print "\n\tTe rog sa scrii cuvantul 'test' in consola."
+
+def start():
+	print """
+	\n\tBine ai venit la primul episod din jocul 'Marea Epopee Nationala.'
+	Ai nevoie de o mica introducere?"""
+	while True:
+		b = raw_input("> ")
+		if b == "da" or b == "Da":
+			introducere()
+		elif "nu" in b or "Nu" in b:
+			start2()
+		else:
+			error()
+def dead(motiv):
+	print motiv, "Molodet, ai pierdut."
+	print "\n\tMai incerci odata?"
+	inca = raw_input ("> ")
+	if inca == "da" or inca == "Da":
+		start()
+	else:
+		exit(0)		
+start()
